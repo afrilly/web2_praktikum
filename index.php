@@ -2,19 +2,30 @@
 // 1. Masukkan (include) file class Mahasiswa.
 require_once 'Mahasiswa.php';
 
-// 2. Instansiasi Objek (Menciptakan objek nyata dari blueprint Mahasiswa)
+// 2. Instansiasi Objek DENGAN PARAMETER
+// $mhs1 (NIM valid)
 $mhs1 = new Mahasiswa("Budi Santoso", "2023001");
 
 // 3. Mengisi Properti Objek (Mengakses data di dalam objek)
 //$mhs1->nama = "Andi Pratama";
 //$mhs1->nim = "2023005";
 // 4. Membuat objek kedua (optional, untuk menunjukkan setiap objek unik)
-$mhs2 = new Mahasiswa("Citra Kirana", "2023002");
+
+// $mhs2 (NIM tidak valid, akan ditolak oleh konstruktor/setter)
+$mhs2 = new Mahasiswa("Citra Kirana", "20230002"); // NIM 8 digit
 
 //Catatan :  proses destruktor (__destruct) akan berjalan di akhir eksekusi skrip,
 // namun di lingkungan tertentu (seperti iframe), outputnya mungkin tidak selalu terlihat.
 //$mhs2->nama = "Sinta Dewi";
 //$mhs2->nim = "2023006";
+
+// Mencoba mengubah NIM (Setter) - Sukses
+echo "<h3 style='color:#2980b9;'>--- DEMO SETTER (mhs1) ---</h3>";
+$mhs1->setNim("1234567"); // 7 digit - Sukses
+
+// Mencoba mengubah NIM (Setter) - Gagal (validasi di dalam setter menolak)
+$mhs1->setNim("999"); // 3 digit - Gagal
+?>
 
 ?>
 <!DOCTYPE html>
@@ -87,26 +98,55 @@ $mhs2 = new Mahasiswa("Citra Kirana", "2023002");
     </div>
 
     <div class="container">
-<h1>Modul 2: Konstruktor, Destruktor, dan $this</h1>
+        <h1>Modul 2: Konstruktor, Destruktor, dan $this</h1>
 
-<h2>Objek Pertama: <?php echo $mhs1->nama; ?></h2>
-<div class="output">
-<!-- 4. Memanggil Metode Objek -->
-<?php $mhs1->sayHello(); ?> 
-</div>
+        <h2>Objek Pertama: <?php echo $mhs1->nama; ?></h2>
+        <div class="output">
+            <!-- 4. Memanggil Metode Objek -->
+            <?php $mhs1->sayHello(); ?>
+        </div>
 
-<h2>Objek Kedua: <?php echo $mhs2->nama; ?></h2>
-<div class="output">
-<!-- Memanggil Metode Objek Kedua -->
-<?php $mhs2->sayHello(); ?> 
-</div>
- 
-<p>
-<em>(Output konstruktor ada di atas hasil sapaan. Output destruktor akan muncul 
-terakhir.)</em>
-</p>
- 
-</div>
+        <h2>Objek Kedua: <?php echo $mhs2->nama; ?></h2>
+        <div class="output">
+            <!-- Memanggil Metode Objek Kedua -->
+            <?php $mhs2->sayHello(); ?>
+        </div>
+
+        <p>
+            <em>(Output konstruktor ada di atas hasil sapaan. Output destruktor akan muncul
+                terakhir.)</em>
+        </p>
+
+    </div>
+
+    <div class="container">
+        <h1>Modul 3: Encapsulation (Pengecekan Data)</h1>
+
+        <h2>Objek Pertama: <?php echo $mhs1->nama; ?></h2>
+        <div class="output">
+            <!-- 4. Memanggil Metode Objek -->
+            <?php $mhs1->sayHello(); ?>
+            <p><strong>NIM Saat Ini (via Getter):</strong> <span style="font-weight: bold; color: 
+#e67e22;"><?php echo $mhs1->getNim(); ?></span></p>
+        </div>
+
+        <h2>Objek Kedua: <?php echo $mhs2->nama; ?></h2>
+        <div class="output">
+            <!-- Memanggil Metode Objek Kedua -->
+            <?php $mhs2->sayHello(); ?>
+            <p><strong>NIM Saat Ini (via Getter):</strong> <span style="font-weight: bold; color: 
+#e67e22;"><?php echo $mhs2->getNim(); ?></span></p>
+            <p style="color: red;">*Objek ini dibuat dengan NIM tidak valid, namun Setter
+                mencegahnya masuk ke properti.</p>
+        </div>
+
+        <p>
+            <em>(Coba hapus method **getNim()** dari kode dan akses NIM secara langsung: **$mhs1-
+                >nim**. Anda akan mendapatkan Fatal Error karena NIM bersifat private!)</em>
+        </p>
+
+    </div>
+
 </body>
 
 </html>
