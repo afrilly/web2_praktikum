@@ -3,15 +3,19 @@
 require_once 'Mahasiswa.php';
 
 // 2. Instansiasi Objek (Menciptakan objek nyata dari blueprint Mahasiswa)
-$mhs1 = new Mahasiswa();
+$mhs1 = new Mahasiswa("Budi Santoso", "2023001");
 
 // 3. Mengisi Properti Objek (Mengakses data di dalam objek)
-$mhs1->nama = "Andi Pratama";
-$mhs1->nim = "2023005";
+//$mhs1->nama = "Andi Pratama";
+//$mhs1->nim = "2023005";
 // 4. Membuat objek kedua (optional, untuk menunjukkan setiap objek unik)
-$mhs2 = new Mahasiswa();
-$mhs2->nama = "Sinta Dewi";
-$mhs2->nim = "2023006";
+$mhs2 = new Mahasiswa("Citra Kirana", "2023002");
+
+//Catatan :  proses destruktor (__destruct) akan berjalan di akhir eksekusi skrip,
+// namun di lingkungan tertentu (seperti iframe), outputnya mungkin tidak selalu terlihat.
+//$mhs2->nama = "Sinta Dewi";
+//$mhs2->nim = "2023006";
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -82,6 +86,27 @@ $mhs2->nim = "2023006";
 
     </div>
 
+    <div class="container">
+<h1>Modul 2: Konstruktor, Destruktor, dan $this</h1>
+
+<h2>Objek Pertama: <?php echo $mhs1->nama; ?></h2>
+<div class="output">
+<!-- 4. Memanggil Metode Objek -->
+<?php $mhs1->sayHello(); ?> 
+</div>
+
+<h2>Objek Kedua: <?php echo $mhs2->nama; ?></h2>
+<div class="output">
+<!-- Memanggil Metode Objek Kedua -->
+<?php $mhs2->sayHello(); ?> 
+</div>
+ 
+<p>
+<em>(Output konstruktor ada di atas hasil sapaan. Output destruktor akan muncul 
+terakhir.)</em>
+</p>
+ 
+</div>
 </body>
 
 </html>
