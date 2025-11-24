@@ -2,6 +2,17 @@
 // 1. Masukkan (include) file class Mahasiswa.
 require_once 'Mahasiswa.php';
 
+// Masukkan (include) kedua file kelas
+require_once 'User.php';
+require_once 'Admin.php';
+
+// 1. Instansiasi Objek User Biasa
+$user1 = new User("Rani Permata");
+
+// 2. Instansiasi Objek Admin (Kelas Anak)
+$admin1 = new Admin("Gagah Perkasa");
+
+
 // 2. Instansiasi Objek DENGAN PARAMETER
 // $mhs1 (NIM valid)
 $mhs1 = new Mahasiswa("Budi Santoso", "2023001");
@@ -146,6 +157,31 @@ $mhs1->setNim("999"); // 3 digit - Gagal
         </p>
 
     </div>
+
+    <div class="container">
+        <h1>Modul 4: Inheritance (Pewarisan User dan Admin)</h1>
+
+        <h2>Pengguna Biasa (Kelas User)</h2>
+        <div class="output">
+            <p style="color: #27ae60; font-size: 1.1em;"><?php echo $user1->salam(); ?></p>
+            <p>Peran yang diwarisi: <span class="role-user"><?php echo $user1->getRole();
+                                                            ?></span></p>
+        </div>
+
+        <h2>Administrator (Kelas Admin)</h2>
+        <div class="output">
+            <!-- Output dari metode yang telah di-override -->
+            <p style="color: #e74c3c; font-size: 1.1em;"><?php echo $admin1->salam(); ?></p>
+            <!-- Memanggil metode yang hanya dimiliki oleh Admin -->
+            <p><?php echo $admin1->kelolaSistem(); ?></p>
+            <p>Peran yang diwarisi: <span class="role-admin"><?php echo $admin1->getRole();
+                                                                ?></span></p>
+        </div>
+
+        <p>
+            <em>(Perhatikan bahwa objek Admin memiliki metode **salam()** yang berbeda dan dapat
+                menggunakan metode dasar **getRole()** dari kelas User.)</em>
+        </p>
 
 </body>
 
