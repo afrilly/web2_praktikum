@@ -1,0 +1,7 @@
+NAMA	: Afril Lia Firdayani 
+NPM	: 2310010559
+KELAS	: 5A TI REG PAGI BJB 
+MATKUL 	: Praktikum WEB 2
+
+
+Ketika pengguna mengetik alamat situs.com/mahasiswa/index, permintaan tersebut pertama kali diterima oleh Front Controller (misalnya index.php). Di sini, router membaca URL dan memutuskan bahwa permintaan itu harus dikirim ke MahasiswaController. Setelah Controller menerima permintaan, ia bertugas mengambil data, sehingga Controller memanggil Model Mahasiswa. Model inilah yang melakukan interaksi langsung dengan database untuk mengambil daftar mahasiswa. Setelah data berhasil diambil, Model mengembalikannya ke Controller. Kemudian Controller memilih tampilan yang sesuai, yaitu View mahasiswa/index, dan mengirimkan data tersebut ke View. View menyusun data itu ke dalam format HTML yang rapi sehingga dapat ditampilkan di halaman web. Hasil akhirnya dikirim kembali ke browser, dan pengguna pun melihat daftar mahasiswa di layar.
