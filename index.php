@@ -2,8 +2,9 @@
 // 1. Masukkan (include) file class Mahasiswa.
 require_once 'Mahasiswa.php';
 
-// Masukkan (include) kedua file kelas
+// Masukkan (include) kedua file kelas dan interface
 require_once 'User.php';
+require_once 'LoginInterface.php'; //penting: muat interface
 require_once 'Admin.php';
 
 // 1. Instansiasi Objek User Biasa
@@ -182,6 +183,36 @@ $mhs1->setNim("999"); // 3 digit - Gagal
             <em>(Perhatikan bahwa objek Admin memiliki metode **salam()** yang berbeda dan dapat
                 menggunakan metode dasar **getRole()** dari kelas User.)</em>
         </p>
+    </div>
+
+    <div class="container">
+        <h1>Modul 5: Abstraction & Interface (Kontrak Perilaku)</h1>
+
+        <h2>Administrator (Kelas Admin)</h2>
+        <div class="output">
+            <!-- Panggilan metode yang diwarisi dan di-override -->
+            <p><?php echo $admin1->salam(); ?></p>
+
+            <!-- Panggilan metode dari Interface -->
+            <p class="action">Action 1: <?php echo $admin1->login(); ?></p>
+            <p class="action">Action 2: <?php echo $admin1->kelolaSistem(); ?></p>
+            <p class="action">Action 3: <?php echo $admin1->logout(); ?></p>
+        </div>
+
+        <h2>Pengguna Biasa (Kelas User)</h2>
+        <div class="output">
+            <p><?php echo $user1->salam(); ?></p>
+            <!-- PERHATIKAN: User TIDAK memiliki metode login() atau logout() -->
+            <p style="color: red;">*Objek User tidak dapat memanggil login() karena tidak
+                mengimplementasikan LoginInterface.</p>
+        </div>
+
+        <p>
+            <em>(Kelas Admin kini memiliki semua metode dari User PLUS semua metode yang diwajibkan
+                oleh LoginInterface.)</em>
+        </p>
+
+    </div>
 
 </body>
 
